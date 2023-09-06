@@ -2,7 +2,7 @@
 
 import java.util.Stack;
 
-public class Teste {
+public class TesteComPilha {
     public static void main(String[] args) {
         Stack<Integer> stack = new Stack<Integer>();
 
