@@ -1,4 +1,4 @@
-package Pilha;
+package EstruturaEstatica;
 
 public class EstruturaEstatica <T>{
     public T[] elementos;
