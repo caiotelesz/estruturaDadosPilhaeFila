@@ -1,21 +1,21 @@
 package EstruturaEstatica;
 
-public class EstruturaEstatica <T>{
+public class EstruturaEstatica<T> {
     public T[] elementos;
     public int tamanho;
 
-    //    Construtor com parametro
+//    Método construtor com parâmetro
     public EstruturaEstatica(int capacidade) {
         this.elementos = (T[]) new Object[capacidade];
         this.tamanho = 0;
     }
 
-    //    Construtor padrão
+//    Método construtor sem parâmetro
     public EstruturaEstatica() {
         this(10);
     }
 
-    //    Para adicionar elemento
+//    Método para adicionar elemento
     public boolean adiciona(T elemento) {
         this.aumentaCapacidade();
         if(this.tamanho < this.elementos.length) {
@@ -26,27 +26,33 @@ public class EstruturaEstatica <T>{
         return false;
     }
 
-    //    Adicionar elemento por posição
+//    Método para adicionar em qualquer posição
     public boolean adiciona(int posicao, T elemento) {
-        if(!(posicao >=0 && posicao < tamanho)) {
+        if(!(posicao>= 0 && posicao < tamanho)) {
             throw new IllegalArgumentException("Posição Inválida");
         }
+
         this.aumentaCapacidade();
+
         for(int i = this.tamanho-1; i>= posicao; i--) {
             this.elementos[i+1] = this.elementos[i];
         }
+
         this.elementos[posicao] = elemento;
         this.tamanho++;
+
         return true;
     }
 
-    //    Aumentar a capacidade do vetor
+//    Método para aumentar a capacidade
     public void aumentaCapacidade() {
         if(this.tamanho == this.elementos.length) {
             T[] elementosNovos = (T[]) new Object[this.elementos.length * 2];
+
             for(int i = 0; i < this.elementos.length; i++) {
                 elementosNovos[i] = this.elementos[i];
             }
+
             this.elementos = elementosNovos;
         }
     }
@@ -60,7 +66,7 @@ public class EstruturaEstatica <T>{
         StringBuilder s = new StringBuilder();
         s.append("[");
 
-        for(int i = 0; i < this.tamanho-1; i++) {
+        for(int i = 0; i< this.tamanho-1; i++) {
             s.append(this.elementos[i]);
             s.append(", ");
         }
@@ -74,17 +80,21 @@ public class EstruturaEstatica <T>{
         return s.toString();
     }
 
+//    Em caso se estiver vazio
     public boolean estaVazia() {
         return this.tamanho == 0;
     }
 
+//    Método para remover elementos por posição
     public void remove(int posicao) {
         if(!(posicao >= 0 && posicao < tamanho)) {
             throw new IllegalArgumentException("Posição Inválida");
         }
-        for (int i=posicao; i < tamanho - 1; i++) {
+
+        for(int i = posicao; i < tamanho-1; i++) {
             elementos[i] = elementos[i+1];
         }
-        tamanho--;
+
+        this.tamanho--;
     }
 }
